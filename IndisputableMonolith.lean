@@ -18,11 +18,17 @@ import IndisputableMonolith.Gravity.ParameterizationBridge
 import IndisputableMonolith.Gravity.GravityParameters
 import IndisputableMonolith.Gravity.DerivedFactors
 import IndisputableMonolith.Gravity.Rotation
+import IndisputableMonolith.Verification.DimensionalRigidity
+import IndisputableMonolith.Foundation.PrimitiveDistinction
+import IndisputableMonolith.Verification.T5.LedgerCost
+import IndisputableMonolith.Cosmology.EtaBPrefactorDerivation
+import IndisputableMonolith.Masses.Verification
 
 /-!
 # IndisputableMonolith (paper slice)
 
-Root module for the paper-support slice of the Shape of Logic library.
-It imports exactly the modules whose declarations are cited in Appendix G
-of "Recognition Science" (RS_v1), plus their transitive dependencies.
+Root module for the paper-support slice cited in
+`papers/RS_v1_rewrite/rs_v1_fop.tex` (Foundations of Physics intro).
+It imports every module whose declarations appear in the verification
+appendix, plus their transitive dependencies.
 -/

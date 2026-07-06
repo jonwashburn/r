@@ -117,7 +117,7 @@ abbrev Dimension := ℕ
 /-- The eight-tick period. -/
 def eight_tick : ℕ := 8
 
-/-- Gap-45: the consciousness barrier parameter. -/
+/-- Gap-45: the rung-45 barrier parameter (= D²(D+2) at D = 3). -/
 def gap_45 : ℕ := 45
 
 /-- The synchronization period: lcm(8, 45) = 360. -/

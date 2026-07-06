@@ -15,3 +15,6 @@ import IndisputableMonolith
 #print axioms IndisputableMonolith.Foundation.PhiForcing.phi_unique_self_similar
 #print axioms IndisputableMonolith.Patterns.grayCycle3
 #print axioms IndisputableMonolith.Gravity.GravityParameters.alpha_gravity_eq_two_alphaLock
+#print axioms IndisputableMonolith.Verification.DimensionalRigidity.no_dimensionless_combination
+#print axioms IndisputableMonolith.Foundation.PrimitiveDistinction.equality_cost_insufficient_for_recognition
+#print axioms IndisputableMonolith.Verification.T5.LedgerCost.aczel_hypothesis_refuted
