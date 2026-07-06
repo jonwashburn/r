@@ -16,6 +16,9 @@ This module is the machine-checked index for
    discharged by the library declaration. Drift from the paper breaks the build.
 
 No new mathematics is introduced here; every proof term is a citation.
+Additional `#check` lines below the appendix table are supporting audit
+surface (constants, ILG scaffold, recognition quotient), not load-bearing
+paper claims.
 -/
 
 namespace PaperIndex
@@ -92,9 +95,9 @@ example (D : ℕ) :
 #check @IndisputableMonolith.Foundation.GapDerivation.dual_routes
 #check @IndisputableMonolith.Foundation.GapDerivation.Gap45Cert
 
-/-- **Headline restatement (Appendix).** `dimensionGap D = 45` at `D = 3`
-(the arithmetic 45 = 9·5, compiler-checked; the combination rule `d²(d+2)` is a
-definition, not a derivation, exactly the paper's gloss). -/
+/-- **Headline restatement (verification appendix).** `dimensionGap D = 45` at `D = 3`
+(the library proof uses `native_decide`; kernel `decide` re-proofs below make the
+paper's kernel-checked wording exact for the cited arithmetic). -/
 example : Foundation.GapDerivation.dimensionGap Foundation.GapDerivation.D = 45 :=
   Foundation.GapDerivation.gap_at_D3
 
@@ -178,15 +181,13 @@ example (τ : RecogSpec.Generation → ℤ)
 #check @IndisputableMonolith.Gravity.GravityParameters.alpha_gravity_eq_two_alphaLock
 #check @IndisputableMonolith.Gravity.GravityParameters.upsilon_star_eq_phi
 #check @IndisputableMonolith.Gravity.DerivedFactors.hsb_suppression_limit
--- NOTE (erratum): the paper's verification appendix table prints `lsb_suppression_limit`;
--- the declaration's actual name at the pinned commit is `lsb_unsuppressed_limit`.
 #check @IndisputableMonolith.Gravity.DerivedFactors.lsb_unsuppressed_limit
 #check @IndisputableMonolith.Gravity.Rotation.vrot_sq
 #check @IndisputableMonolith.Gravity.Rotation.vrot_flat_of_linear_Menc
 
 /-! ## Cube-combinatorics helpers (Constants/AlphaDerivation.lean)
 
-verification appendix reproduces these definitions as the source of the integers 11
+The verification appendix reproduces these definitions as the source of the integers 11
 and 6 ("The integers 11 and 6 seed the α and ηB expressions"). -/
 
 #check @IndisputableMonolith.Constants.AlphaDerivation.cube_edges
@@ -201,7 +202,7 @@ and 6 ("The integers 11 and 6 seed the α and ηB expressions"). -/
 #check @IndisputableMonolith.Verification.T5.LedgerCost.aczel_hypothesis_refuted
 #check @IndisputableMonolith.Verification.T5.LedgerCost.quadraticWitness
 
-/-- **Headline restatement (Appendix).** No nontrivial dimensionless monomial in
+/-- **Headline restatement (verification appendix).** No nontrivial dimensionless monomial in
 `(c, hbar, G)` over `Q`. -/
 example (a b g : ℚ)
     (h : ∀ i : Fin 3, a * Verification.DimensionalRigidity.dimC i +
