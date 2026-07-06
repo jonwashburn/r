@@ -1,0 +1,17 @@
+import IndisputableMonolith
+
+#print axioms IndisputableMonolith.Cost.FunctionalEquation.law_of_logic_forces_jcost
+#print axioms IndisputableMonolith.CostUniqueness.unique_cost_on_pos_from_rcl
+#print axioms IndisputableMonolith.Foundation.AlexanderDuality.alexander_duality_circle_linking
+#print axioms IndisputableMonolith.Foundation.DimensionForcing.dimension_forced
+#print axioms IndisputableMonolith.Foundation.CircleWindingChain.circleH1ZIsoInt_holds
+#print axioms IndisputableMonolith.Foundation.GapDerivation.gap_at_D3
+#print axioms IndisputableMonolith.Foundation.GapDerivation.gap45_cert
+#print axioms IndisputableMonolith.Masses.TorsionForcing.rcl_forced_torsion_unique
+#print axioms IndisputableMonolith.Masses.TorsionForcing.passiveAtLevel_1
+#print axioms IndisputableMonolith.Constants.hbar_eq_phi_inv_fifth
+#print axioms IndisputableMonolith.Foundation.TMinus1ToT8Bridge.complete_forcing_chain_tminus2_to_t8
+#print axioms IndisputableMonolith.Foundation.TMinus1ToT8Bridge.t6_holds
+#print axioms IndisputableMonolith.Foundation.PhiForcing.phi_unique_self_similar
+#print axioms IndisputableMonolith.Patterns.grayCycle3
+#print axioms IndisputableMonolith.Gravity.GravityParameters.alpha_gravity_eq_two_alphaLock
