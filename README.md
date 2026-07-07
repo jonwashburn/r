@@ -49,7 +49,7 @@ Files are extracted from
 
 The pinned paper-slice commit on this repository is
 
-`f3b6907e260a48f6ac4aac8b0240b936f48adcb0`
+`6b7861b031f229ffe3be33f735c2db2fff3612e9`
 
 (toolchain `leanprover/lean4:v4.27.0-rc1`, mathlib4 pinned in `lake-manifest.json`),
 restricted to the import closure of the verification appendix. Rebuild the slice
