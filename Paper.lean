@@ -50,6 +50,7 @@ open IndisputableMonolith
 /-! ## Layer: Reciprocal cost -/
 
 #check @IndisputableMonolith.Cost.FunctionalEquation.law_of_logic_forces_jcost
+#check @IndisputableMonolith.Cost.FunctionalEquation.law_of_logic_forces_jcost_with_regularization
 #check @IndisputableMonolith.CostUniqueness.unique_cost_on_pos_from_rcl
 #check @IndisputableMonolith.CostUniqueness.Jcost_satisfies_composition_law
 #check @IndisputableMonolith.CostUniqueness.Jcost_continuous_pos
@@ -96,23 +97,21 @@ example (D : ℕ) :
 #check @IndisputableMonolith.Foundation.GapDerivation.Gap45Cert
 
 /-- **Headline restatement (verification appendix).** `dimensionGap D = 45` at `D = 3`
-(the library proof uses `native_decide`; kernel `decide` re-proofs below make the
-paper's kernel-checked wording exact for the cited arithmetic). -/
+(the upstream library proof uses `native_decide`; kernel `decide` re-proofs below
+eliminate compiler trust for the cited arithmetic). -/
 example : Foundation.GapDerivation.dimensionGap Foundation.GapDerivation.D = 45 :=
   Foundation.GapDerivation.gap_at_D3
 
-/-- **Headline restatement (verification appendix).** `2^D − D = configDim D` (Lemma 6.24). -/
+/-- **Headline restatement (verification appendix).** `2^D − D = configDim D`. -/
 example : 2 ^ Foundation.GapDerivation.D - Foundation.GapDerivation.D
     = Foundation.GapDerivation.configDim Foundation.GapDerivation.D :=
   Foundation.GapDerivation.dual_routes
 
-/-! ### Kernel-checked re-proofs of the cube-count arithmetic
+/-! ### Kernel `decide` re-proofs of the cube-count arithmetic
 
-The library proves these by `native_decide` (which trusts the compiler,
-axioms `Lean.ofReduceBool`/`Lean.trustCompiler`). The integers are small,
-so we re-prove each cited arithmetic fact here by kernel `decide`: these
-examples depend on no axioms beyond the Lean base, making the paper's
-"kernel-checked evaluation" wording exact. -/
+The upstream library proves these by `native_decide` (compiler trust). The integers
+are small, so `Paper.lean` re-proves each cited fact by kernel `decide` with no
+extra axioms beyond the Lean base. -/
 
 example : Foundation.GapDerivation.dimensionGap Foundation.GapDerivation.D = 45 := by decide
 example : Foundation.GapDerivation.dimensionGap Foundation.GapDerivation.D = 9 * 5 := by decide
@@ -197,6 +196,7 @@ and 6 ("The integers 11 and 6 seed the α and ηB expressions"). -/
 /-! ## Layer: Boundary certificates (Section 6) -/
 
 #check @IndisputableMonolith.Verification.DimensionalRigidity.no_dimensionless_combination
+#check @IndisputableMonolith.Verification.DimensionalRigidity.dimMatrix_det
 #check @IndisputableMonolith.Verification.DimensionalRigidity.si_values_not_derivable_from_pure_numbers
 #check @IndisputableMonolith.Foundation.PrimitiveDistinction.equality_cost_insufficient_for_recognition
 #check @IndisputableMonolith.Verification.T5.LedgerCost.aczel_hypothesis_refuted
@@ -210,6 +210,18 @@ example (a b g : ℚ)
         g * Verification.DimensionalRigidity.dimG i = 0) :
     a = 0 ∧ b = 0 ∧ g = 0 :=
   Verification.DimensionalRigidity.no_dimensionless_combination a b g h
+
+/-- **Headline restatement (verification appendix).** The primitive-distinction floor
+does not force the composition law (Certificate 2). -/
+example (weight : ℝ) (hw : weight ≠ 0) :
+    ¬ Foundation.PrimitiveDistinction.CompositionConsistency
+        (Foundation.PrimitiveDistinction.hammingCostOnReal weight) :=
+  Foundation.PrimitiveDistinction.equality_cost_insufficient_for_recognition weight hw
+
+/-- **Headline restatement (verification appendix).** Aczél's Theorem 3.1.3 hypothesis
+is refuted by an explicit quadratic witness (Certificate 2 companion). -/
+example : ¬ Verification.T5.LedgerCost.aczel_theorem_3_1_3_hypothesis :=
+  Verification.T5.LedgerCost.aczel_hypothesis_refuted
 
 /-! ## Layer: Exhibit retraction records -/
 
