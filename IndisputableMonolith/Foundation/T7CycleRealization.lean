@@ -9,11 +9,11 @@ This module adds a theorem surface for the strengthened T7/T8 dimension route:
 the T7 closed cycle is graph-shaped, so its realized defect is a circle (`S¹`)
 and no closed walk in the cube graph realizes a higher sphere `S^p`, `p ≥ 2`.
 
-The current module keeps the smooth-topology content predicate-level. It proves
-the elementary finite-dimensional arithmetic and exposes the exact theorem names
-needed by the forcing chain. This matches the existing `AlexanderDuality.lean`
-discipline while reserving full CW/covering-dimension formalization for a later
-Mathlib-backed pass.
+The current module keeps the smooth-topology content **predicate-level (MODEL)**:
+`EdgeDistinct`, `ImageIsCircle`, and `RealizedDefect` are presently `True` or
+definitional (`RealizedDefect := Circle`). Theorem names such as
+`t7_cycle_realizes_circle` record the intended API, not a CW/covering proof.
+See `Verification.T6T8SpineAudit.t6t8_spine_audit_cert`.
 -/
 
 namespace IndisputableMonolith

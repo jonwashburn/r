@@ -49,12 +49,15 @@ proves the iff by reflexivity. The mathematical content (Hatcher's
 computation) is preserved as a **named identification** rather than an
 external axiom.
 
-## Status: 0 axioms (CLOSED 2026-04-22).
+## Status: 0 axioms; **ENCODING** at the linking predicate (July 2026 audit).
 
-The predicate is now defined as `CircleReducedCohomologyNontrivial k := k = 1`
-directly. The cohomological interpretation lives in the docstring; the
-downstream linking biconditional `SphereAdmitsCircleLinking D ↔ D = 3` is
-proved by a one-line `omega` after unfolding.
+The predicate `CircleReducedCohomologyNontrivial k := k = 1` is a named
+identification of Hatcher's computation, not a Mathlib cohomology proof.
+Alexander duality itself (complement homology ↔ circle cohomology) is **OPEN**
+in Mathlib and here. Separately, `CircleWindingChain.circleH1ZIsoInt_holds`
+proves `H₁(S¹;ℤ) ≅ ℤ` against Mathlib singular homology; that theorem is not yet
+wired into `SphereAdmitsCircleLinking`. Audit:
+`Verification.T6T8SpineAudit.t6t8_spine_audit_cert`.
 
 ## Upgrade Path
 

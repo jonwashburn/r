@@ -23,6 +23,8 @@ import IndisputableMonolith.Foundation.PrimitiveDistinction
 import IndisputableMonolith.Verification.T5.LedgerCost
 import IndisputableMonolith.Cosmology.EtaBPrefactorDerivation
 import IndisputableMonolith.Masses.Verification
+import IndisputableMonolith.Verification.DimensionLinking
+import IndisputableMonolith.Verification.T6T8SpineAudit
 
 /-!
 # IndisputableMonolith (paper slice)

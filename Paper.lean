@@ -218,4 +218,12 @@ example (a b g : ℚ)
 #check @IndisputableMonolith.Masses.Verification.MassVerificationCert
 #check @IndisputableMonolith.Masses.Verification.mass_verification_cert_exists
 
+/-! ## Layer: T6–T8 spine honesty audit (July 2026) -/
+
+#check @IndisputableMonolith.Verification.T6T8SpineAudit.t6t8_spine_audit_cert
+#check @IndisputableMonolith.Verification.T6T8SpineAudit.t6_obstruction_closed_framework
+#check @IndisputableMonolith.Foundation.HierarchyRealizationObstruction.closedFramework_does_not_force_realizedHierarchy_fields
+#check @IndisputableMonolith.Foundation.T7CycleRealization.t7_cycle_realizes_circle
+#check @IndisputableMonolith.Verification.DimensionLinking.allowed_set_A_characterization
+
 end PaperIndex
