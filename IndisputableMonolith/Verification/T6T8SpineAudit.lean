@@ -56,20 +56,16 @@ theorem t6_quadratic_algebra_standalone : T6_Phi_Forced :=
 
 /-! ## T7: combinatorics real; realization layer predicate-level -/
 
-/-- **AUDIT (MODEL).** The T7.5 edge-distinctness predicate is presently the
-placeholder `True`, not a graph-theoretic edge lemma. -/
-theorem t7_edge_distinct_is_placeholder (D : ℕ) (hD : 2 ≤ D)
-    (W : ClosedWalkOnCube D) (hHam : Hamiltonian W) :
-    EdgeDistinct W :=
-  edge_distinct_of_dim_ge_two D hD W hHam
+/-- **AUDIT (MODEL).** `EdgeDistinct` is definitionally `True` (placeholder predicate). -/
+theorem t7_edge_distinct_is_placeholder (D : ℕ) (W : ClosedWalkOnCube D) :
+    EdgeDistinct W ↔ True :=
+  Iff.rfl
 
-/-- **AUDIT (MODEL).** `RealizedDefect` is defined to return `Circle` regardless
-of the walk (predicate-level packaging). -/
-theorem t7_realized_defect_by_definition (D : ℕ) (hD : 2 ≤ D)
-    (cell : SubstrateAxioms.CellularCompletion D) (W : ClosedWalkOnCube D)
-    (hHam : Hamiltonian W) :
+/-- **AUDIT (MODEL).** `RealizedDefect` is definitionally `Circle` for every walk. -/
+theorem t7_realized_defect_by_definition (D : ℕ)
+    (cell : SubstrateAxioms.CellularCompletion D) (W : ClosedWalkOnCube D) :
     RealizedDefect cell W = T7CycleRealization.Circle :=
-  t7_cycle_realizes_circle D hD cell W hHam
+  rfl
 
 /-! ## T8: linking predicate is an encoding; H₁(S¹) is proved separately -/
 
@@ -81,8 +77,10 @@ theorem t8_linking_predicate_unfolds_to_arithmetic (D : ℕ) :
   rw [circle_reduced_cohomology_iff]
 
 /-- **AUDIT (THEOREM).** `dimension_unique` discharges from the `linking` field
-alone; `eight_tick`, `gap_sync`, and substrate fields are not used in the proof. -/
-theorem t8_dimension_unique_uses_linking_only (D : Dimension)
+alone; `eight_tick`, `gap_sync`, and substrate fields are not used in the proof.
+The genuine `H₁(S¹;ℤ) ≅ ℤ` certificate is proved separately and is **OPEN** as a
+premise of this discharge (not machine-checked here). -/
+theorem t8_dimension_unique_from_linking (D : Dimension)
     (hlink : SupportsNontrivialLinking D) : D = 3 :=
   linking_requires_D3 D hlink
 
@@ -113,26 +111,33 @@ structure T6T8SpineAuditCert : Prop where
         F.r (F.T^[k + 1] base) / F.r (F.T^[k] base))) ∧
     (¬ (F.r (F.T^[2] base) = F.r (F.T^[1] base) + F.r base))
   t6_algebra_standalone : T6_Phi_Forced
-  t7_placeholder_realization : ∀ (D : ℕ) (hD : 2 ≤ D)
-    (cell : SubstrateAxioms.CellularCompletion D) (W : ClosedWalkOnCube D)
-    (hHam : Hamiltonian W), RealizedDefect cell W = T7CycleRealization.Circle
+  t7_edge_distinct_placeholder : ∀ (D : ℕ) (W : ClosedWalkOnCube D), EdgeDistinct W ↔ True
+  t7_placeholder_realization : ∀ (D : ℕ)
+    (cell : SubstrateAxioms.CellularCompletion D) (W : ClosedWalkOnCube D),
+    RealizedDefect cell W = T7CycleRealization.Circle
   t8_linking_encoding : ∀ D : ℕ, SphereAdmitsCircleLinking D ↔ (D : ℤ) - 2 = 1
   t8_odd_dimensions_allowed : ∀ D : ℕ,
     (D ≥ 3 ∧ ¬ 2 ∣ D) ↔ ∃ p : ℕ, p ≥ 1 ∧ D = 2 * p + 1
   t8_h1_proved : circleH1ZIsoInt
-  t8_h1_not_linking_premise :
+  t8_dimension_unique_from_linking :
     ∀ D : Dimension, SupportsNontrivialLinking D → D = 3
+  t8_backend_encodes_D3 : ∀ (hH1 : circleH1ZNonzero) (D : ℕ),
+    (mathlibCircleLinkingBackend_from_circleH1ZNonzero hH1).supportsLinking D ↔ D = 3
 
 /-- Checked audit certificate bundling the July 2026 T6–T8 honesty report. -/
 theorem t6t8_spine_audit_cert : T6T8SpineAuditCert where
   t6_obstruction := t6_obstruction_closed_framework
   t6_algebra_standalone := t6_quadratic_algebra_standalone
-  t7_placeholder_realization := fun D hD cell W hHam =>
-    t7_realized_defect_by_definition D hD cell W hHam
+  t7_edge_distinct_placeholder := fun D W => t7_edge_distinct_is_placeholder D W
+  t7_placeholder_realization := fun D cell W =>
+    t7_realized_defect_by_definition D cell W
   t8_linking_encoding := t8_linking_predicate_unfolds_to_arithmetic
   t8_odd_dimensions_allowed := t8_same_sector_allows_odd_dimensions
   t8_h1_proved := t8_circle_h1_iso_proved
-  t8_h1_not_linking_premise := linking_requires_D3
+  t8_dimension_unique_from_linking := linking_requires_D3
+  t8_backend_encodes_D3 := fun hH1 D => by
+    dsimp [mathlibCircleLinkingBackend_from_circleH1ZNonzero]
+    constructor <;> intro h <;> simpa using h
 
 end T6T8SpineAudit
 end Verification
